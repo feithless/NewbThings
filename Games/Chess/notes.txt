@@ -1,0 +1,26 @@
+Pawns: 
+	First move can move 2 spaces forward
+	Otherwise, can only move 1 space forward
+	Can only attack 1 space diagonally 
+	F-Mf2 Mf1 Adf1 CNJ
+
+Rooks: 
+	Move and attack along horizontal/vertical any number of spaces until edge/running into something
+	MAhx MAvx CNJ
+
+Knights:
+	Can jump over other units, moving in horizontal/vertical 2 spaces, and then 1 space in the other axis (L)
+	Attack pattern falls on movement space.
+	MAh2v1 MAv2h1 CJ
+
+Bishops:
+	Move and attack along diagonal any number of spaces until edge/running into something.
+	MAdx CNJ
+
+Queens:
+	Move and attack along diagonals and horizontal/vertical any number of spaces until edge/running into something
+	MAhx MAvx MAdx CNJ
+
+Kings:
+	Move and attack 1 space along diagonal, horizontal, or vertical; cannot be put into danger
+	MAh1 MAv1 MAd1 CNJ
