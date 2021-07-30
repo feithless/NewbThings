@@ -22,6 +22,7 @@ void King::Init(Vec2D offset, int pieceNum, bool isWhite)
 		mCOutline = Color::White();
 		mCFill = Color::Black();
 	}
+	mUnit = ptKing;
 }
 
 void King::Update(uint32_t dt) const
@@ -120,8 +121,4 @@ void King::Draw(Screen& screen) const
 	screen.Draw(line, mCFill);
 	Circle chestHide(Vec2D(midXOffset, yOffset + (yChar * 7)), xChar * 3 - 1);
 	screen.Draw(chestHide, mCFill, true, mCFill);
-}
-
-void King::MoveRules(ChessBoard& chessBoard)
-{
 }

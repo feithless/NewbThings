@@ -27,6 +27,7 @@ void Queen::Init(Vec2D offset, int pieceNum, bool isWhite)
 		mCOutline = Color::White();
 	}
 	mIsAlive = true;
+	mUnit = ptQueen;
 }
 
 void Queen::Update(uint32_t dt) const
@@ -105,8 +106,4 @@ void Queen::Draw(Screen& screen) const
 	base.SetP1(Vec2D(xOffset + 37.8, yOffset + 5.25));
 	base.SetP2(Vec2D(xOffset + 34.125, yOffset + 4.2));
 	screen.Draw(base, mCFill, true, mCOutline);
-}
-
-void Queen::MoveRules(ChessBoard& chessBoard)
-{
 }

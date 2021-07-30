@@ -70,8 +70,6 @@ void ScreenBuffer::SetPixel(const Color& color, int x, int y)
 	assert(mSurface);
 	if (mSurface && (y < mSurface->h && y >= 0 && x >= 0 && x < mSurface->w))
 	{
-		SDL_LockSurface(mSurface);
-
 		uint32_t* pixels = (uint32_t*)mSurface->pixels;
 
 		size_t index = GetIndex(y, x);
@@ -83,8 +81,17 @@ void ScreenBuffer::SetPixel(const Color& color, int x, int y)
 		Color surfaceColor = Color(pixels[index]); // destinationColor
 		pixels[index] = Color::Evaluate1MinusSourceAlpha(color, surfaceColor).GetPixelColor();
 
-		SDL_UnlockSurface(mSurface);
 	}
+}
+
+void ScreenBuffer::Lock()
+{
+	SDL_LockSurface(mSurface);
+}
+
+void ScreenBuffer::Unlock()
+{
+	SDL_UnlockSurface(mSurface);
 }
 
 

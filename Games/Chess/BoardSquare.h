@@ -32,8 +32,10 @@ public:
 	inline float GetXPosition() const { return mPosition.GetX(); }
 	inline float GetYPosition() const { return mPosition.GetY(); }
 	inline Vec2D GetPosition() const { return mPosition; }
+	inline PieceType GetPiece() const { return mPiece->GetPieceType(); }
 	inline void SetPosition(Vec2D pos) { mPosition = pos; }
 	inline void SetPosition(int x, int y) { mPosition.SetX(x); mPosition.SetY(y); }
+	inline void SetHighlight(bool highlighted) { mIsHighlight = highlighted; }
 	inline bool GetMoveHighlight() const { return mIsMHighlight; }
 	inline bool GetAttackHighlight() const { return mIsAHighlight; }
 	inline void SetMoveHighlight(bool highlight) { mIsMHighlight = highlight; }
@@ -51,6 +53,7 @@ private:
 	int mOwner;
 	bool mIsWhite;
 	Color mColor;
+	bool mIsHighlight;
 	bool mIsMHighlight;
 	bool mIsAHighlight;
 	Vec2D mPosition;

@@ -24,6 +24,7 @@ void Rook::Init(Vec2D offset, int pieceNum, bool isWhite)
 		mCOutline = Color::White();
 	}
 	mPieceNum = pieceNum;
+	mUnit = PieceType::ptRook;
 }
 
 void Rook::Update(uint32_t dt) const
@@ -59,15 +60,3 @@ void Rook::Draw(Screen& screen) const
 	screen.Draw(rect, mCOutline, true, mCFill);
 }
 
-void Rook::MoveRules(ChessBoard& chessBoard)
-{
-	int j = 1;
-	for (int i = 0; i < 8; i++)
-	{
-		// CanMove(Vec2D(GetXPosition() + j, GetYPosition(), chessBoard);
-		// CanMove(Vec2D(GetXPosition(), GetYPosition() + j, chessBoard);
-		// CanMove(Vec2D(GetXPosition() - j, GetYPosition(), chessBoard);
-		// CanMove(Vec2D(GetXPosition(), GetYPosition() - j, chessBoard);
-		j++;
-	}
-}

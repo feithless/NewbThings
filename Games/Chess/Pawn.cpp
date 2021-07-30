@@ -26,6 +26,7 @@ void Pawn::Init(Vec2D offset, int pieceNum, bool isWhite)
 	}
 	mPieceNum = pieceNum;
 	mHasMoved = false;
+	mUnit = ptPawn;
 }
 
 void Pawn::Update(uint32_t dt) const
@@ -34,37 +35,6 @@ void Pawn::Update(uint32_t dt) const
 	// MoveRules(chessBoard);
 }
 
-
-void Pawn::MoveRules(ChessBoard& chessBoard)
-{
-	// White starts on the bottom, so since pawns can only move forward, we need to limit movement to moving - in y axis
-	// Piece can only move forward one space or attack diagonally
-	// Piece can always move forward 1 spot as well as attack to the diagonals, so they don't need to check if it's the first turn or not.
-	if (mIsWhite)
-	{
-		if (!mHasMoved)
-		{
-			// CanMove(Vec2D(GetXPosition(), GetYPosition() - 2, chessBoard);
-		}
-
-		// CanMove(Vec2D(GetXPosition(), GetYPosition() - 1, chessBoard);
-		// CanAttack(Vec2D(GetXPosition() + 1, GetYPosition() - 1, chessBoard);
-		// CanAttack(Vec2D(GetXPosition() - 1, GetYPosition() - 1, chessBoard);
-	}
-	else
-	{
-	// Black starts on the top, so since pawns can only move forward, we need to limit movement to moving + in y axis
-		if (!mHasMoved)
-		{
-			// CanMove(Vec2D(GetXPosition(), GetYPosition() + 2, chessBoard);
-		}
-
-		// CanMove(Vec2D(GetXPosition(), GetYPosition() + 1, chessBoard);
-		// CanAttack(Vec2D(GetXPosition() + 1, GetYPosition() + 1, chessBoard);
-		// CanAttack(Vec2D(GetXPosition() - 1, GetYPosition() + 1, chessBoard);
-	}
-	
-}
 
 void Pawn::Draw(Screen& screen) const
 {

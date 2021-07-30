@@ -23,6 +23,9 @@ public:
 
 	void SetPixel(const Color& color, int x, int y);
 
+	void Lock();
+	void Unlock();
+
 private:
 
 	SDL_Surface* mSurface;

@@ -75,11 +75,38 @@ void Screen::SwapScreen()
 }
 
 
+void Screen::PreDraw()
+{
+	if (mBackLocked)
+	{
+		std::cout << "Locked screen has been attempted to be locked." << std::endl;
+		return;
+	}
+	mBackLocked = true;
+	mBackBuffer.Lock();
+}
+
+void Screen::PostDraw()
+{
+	if (!mBackLocked)
+	{
+		std::cout << "Unlocked screen has been attempted to be unlocked." << std::endl;
+		return;
+	}
+	mBackLocked = false;
+	mBackBuffer.Unlock();
+}
+
 void Screen::Draw(int x, int y, const Color& color)
 {
 	// assert(moptrWindow);
 	if (moptrWindow)
 	{
+		if (!mBackLocked)
+		{
+			std::cout << "Draw function called without the back buffer being locked." << std::endl;
+			return;
+		}
 		mBackBuffer.SetPixel(color, x, y);
 	}
 }

@@ -10,6 +10,16 @@ class Screen;
 class Chess;
 class ChessBoard;
 
+enum PieceType
+{
+	ptPawn = 0,
+	ptRook,
+	ptKnight,
+	ptBishop,
+	ptQueen,
+	ptKing
+};
+
 class ChessPiece
 {
 
@@ -24,17 +34,6 @@ public:
 	// Calls the draw function of the piece.
 	virtual void Draw(Screen& screen) const = 0;
 
-	/// <summary>
-	/// Figures out the move rules and draws them.
-	/// Pawns can move 2 spaces forward on first move, 1 space otherwise, and can only attack diagonally forward.
-	/// Rooks can move any number of unoccupied spaces horizontally and vertically, but cannot move or attack diagonal.
-	/// Knights move in an L shape - 2 steps in x or y, 1 step in the other axis and can jump other units.
-	/// Bishops can move any number of unoccupied spaces diagonally.
-	/// Queen can move any number of unoccupied spaces horizontally, vertically, or diagonally.
-	/// King can move 1 space in any unoccupied space horizontally, vertically, or diagonally from the piece that does not put the king in the threatened position.
-	/// </summary>
-	/// <param name="chessBoard"></param>
-	virtual void MoveRules(ChessBoard& chessBoard) = 0;
 
 	// Gives access to internal members that may need to be seen outside.
 	float GetXPosition() const { return mPosition.GetX(); }
@@ -44,6 +43,7 @@ public:
 	void SetYPosition(float y) { mPosition.SetY(y); }
 	void SetPosition(Vec2D pos) { mPosition = pos; }
 	bool GetColor() const { return mIsWhite; }
+	PieceType GetPieceType() const { return mUnit; }
 
 
 protected:
@@ -53,6 +53,6 @@ protected:
 	int mPieceNum;
 	bool mIsWhite;
 	bool mIsAlive;
-	string mUnit;
+	PieceType mUnit;
 	Vec2D mPosition;
 };

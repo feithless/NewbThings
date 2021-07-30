@@ -15,6 +15,8 @@ void BoardSquare::Draw(Screen& screen)
 		DrawAttackHighlight(screen);
 	else if (mIsMHighlight)
 		DrawMoveHighlight(screen);
+	else if (mIsHighlight)
+		DrawLocationHighlight(screen);
 	else
 	{
 		this;
@@ -65,7 +67,6 @@ void BoardSquare::DrawMoveHighlight(Screen& screen)
 	int offsetY = 75 * mPosition.GetY() + 150;
 	AARectangle square = { Vec2D(offsetX, offsetY), Vec2D(offsetX + 75, offsetY + 75) };
 	Color color = Color::Orange();
-	color.SetAlpha(125);
 	Color color2 = Color::Gray();
 
 	screen.Draw(square, color2, true, color);
@@ -78,7 +79,6 @@ void BoardSquare::DrawAttackHighlight(Screen& screen)
 	int offsetY = 75 * mPosition.GetY() + 150;
 	AARectangle square = { Vec2D(offsetX, offsetY), Vec2D(offsetX + 75, offsetY + 75) };
 	Color color = Color::Red();
-	color.SetAlpha(125);
 	Color color2 = Color::Gray();
 
 	screen.Draw(square, color2, true, color);
@@ -87,6 +87,13 @@ void BoardSquare::DrawAttackHighlight(Screen& screen)
 
 void BoardSquare::DrawLocationHighlight(Screen& screen)
 {
+	int offsetX = 75 * mPosition.GetX() + 150;
+	int offsetY = 75 * mPosition.GetY() + 150;
+	AARectangle square = { Vec2D(offsetX, offsetY), Vec2D(offsetX + 75, offsetY + 75) };
+	Color color = Color::Blue();
+	Color color2 = Color::Gray();
+
+	screen.Draw(square, color2, true, color);
 }
 
 void BoardSquare::KillPiece(std::unique_ptr<ChessPiece> piece)

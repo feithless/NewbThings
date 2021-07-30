@@ -17,15 +17,62 @@ ArcadeScene::ArcadeScene()
 
 void ArcadeScene::Init()
 {
+
 	ButtonAction action;
 	action.key = GameController::ActionKey();
-	action.action = [](uint32_t dt, InputState state)
+	action.action = [this](uint32_t dt, InputState state)
 	{
 		if (GameController::IsPressed(state))
 		{
+			this->Select();
 		}
 	};
 	mGameController.AddInputActionForKey(action);
+
+	ButtonAction left;
+	left.key = GameController::LeftKey();
+	left.action = [this](uint32_t dt, InputState state)
+	{
+		if (GameController::IsPressed(state))
+		{
+			std::cout << "Left key pressed" << std::endl;
+			this->MoveLeft();
+		}
+	};
+	mGameController.AddInputActionForKey(left);
+	ButtonAction right;
+	right.key = GameController::RightKey();
+	right.action = [this](uint32_t dt, InputState state)
+	{
+		if (GameController::IsPressed(state))
+		{
+			std::cout << "Right key pressed" << std::endl;
+			this->MoveRight();
+		}
+	};
+	mGameController.AddInputActionForKey(right);
+	ButtonAction up;
+	up.key = GameController::UpKey();
+	up.action = [this](uint32_t dt, InputState state)
+	{
+		if (GameController::IsPressed(state))
+		{
+			std::cout << "Up key pressed" << std::endl;
+			this->MoveUp();
+		}
+	};
+	mGameController.AddInputActionForKey(up);
+	ButtonAction down;
+	down.key = GameController::DownKey();
+	down.action = [this](uint32_t dt, InputState state)
+	{
+		if (GameController::IsPressed(state))
+		{
+			std::cout << "Down key pressed" << std::endl;
+			this->MoveDown();
+		}
+	};
+	mGameController.AddInputActionForKey(down);
 
 	MouseButtonAction mouseAction;
 	mouseAction.mouseButton = GameController::LeftMouseButton();
@@ -33,6 +80,7 @@ void ArcadeScene::Init()
 	{
 		if (GameController::IsPressed(state))
 		{
+			std::cout << "Mouse button pressed." << std::endl;
 		}
 	};
 
@@ -42,6 +90,8 @@ void ArcadeScene::Init()
 		});
 
 	mChessBoard.Init();
+
+
 }
 
 void ArcadeScene::Update(uint32_t dt)
@@ -65,6 +115,30 @@ const std::string& ArcadeScene::GetSceneName() const
 {
 	static std::string sceneName = "Arcade Scene";
 	return sceneName;
+}
+
+void ArcadeScene::MoveLeft()
+{
+	mChessBoard.MoveHighlightLocation(false, false);
+}
+
+void ArcadeScene::MoveRight()
+{
+	mChessBoard.MoveHighlightLocation(false, true);
+}
+
+void ArcadeScene::MoveUp()
+{
+	mChessBoard.MoveHighlightLocation(true, false);
+}
+
+void ArcadeScene::MoveDown()
+{
+	mChessBoard.MoveHighlightLocation(true, true);
+}
+
+void ArcadeScene::Select()
+{
 }
 
 void ArcadeScene::DrawLine(Vec2D p1, Vec2D p2, Color outline,  Screen& screen)

@@ -27,6 +27,9 @@ public:
 	inline uint32_t Width() const { return mWidth; }
 	inline uint32_t Height() const { return mHeight; }
 
+	void PreDraw();
+	void PostDraw();
+
 	// Drawing methods goes here.
 	
 	void Draw(int x, int y, const Color& color);
@@ -46,6 +49,8 @@ private:
 
 	uint32_t mWidth;
 	uint32_t mHeight;
+
+	bool mBackLocked;
 
 	Color mClearColor;
 	ScreenBuffer mBackBuffer;

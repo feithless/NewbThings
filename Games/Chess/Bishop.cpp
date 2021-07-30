@@ -27,6 +27,7 @@ void Bishop::Init(Vec2D offset, int pieceNum, bool isWhite)
 		mCOutline = Color::White();
 	}
 	mIsAlive = true;
+	mUnit = PieceType::ptBishop;
 }
 
 void Bishop::Update(uint32_t dt) const
@@ -52,9 +53,4 @@ void Bishop::Draw(Screen& screen) const
 	screen.Draw(c1, mCOutline, true, mCFill);
 	screen.Draw(c2, mCOutline, true, mCFill);
 	screen.Draw(line, mCOutline);
-}
-
-void Bishop::MoveRules(ChessBoard& chessBoard)
-{
-	// Only moves on diagonals.
 }

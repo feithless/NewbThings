@@ -77,8 +77,9 @@ void App::Run()
 				}
 
 				// Render
+				mScreen.PreDraw();
 				topScene->Draw(mScreen);
-
+				mScreen.PostDraw();
 			}
 
 
