@@ -25,6 +25,8 @@ public:
 	float Slope() const;
 	float Length() const;
 
+	Line2D Normal(const Line2D tangent) const;
+
 private:
 	Vec2D mP0;
 	Vec2D mP1;

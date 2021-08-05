@@ -13,3 +13,6 @@ bool IsGreaterThan(float x, float y);
 bool IsLessThanOrEqual(float x, float y);
 
 bool IsLessThan(float x, float y);
+
+float MillisecondsToSeconds(unsigned int milliseconds);
+

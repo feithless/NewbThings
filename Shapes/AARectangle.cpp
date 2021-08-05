@@ -50,7 +50,7 @@ bool AARectangle::Intersects(const AARectangle& rect) const
 		rect.GetTopLeftPoint().GetY() > GetBottomRightPoint().GetY());
 }
 
-bool AARectangle::ContainsPont(const Vec2D& point) const
+bool AARectangle::ContainsPoint(const Vec2D& point) const
 {
 	bool withinX = point.GetX() >= GetTopLeftPoint().GetX() && point.GetX() <= GetBottomRightPoint().GetX();
 	bool withinY = point.GetY() >= GetTopLeftPoint().GetY() && point.GetY() <= GetBottomRightPoint().GetY();

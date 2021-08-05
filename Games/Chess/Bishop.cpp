@@ -1,5 +1,4 @@
 #include "Bishop.h"
-#include "../Chess.h"
 #include "../../Graphics/Screen.h"
 #include "../../Graphics/Color.h"
 #include "../../Shapes/AARectangle.h"

@@ -3,6 +3,7 @@
 #include "../Graphics/Screen.h"
 #include <stdint.h>
 #include <vector>
+#include <string>
 #include <memory>
 #include "../Input/InputController.h"
 
@@ -24,6 +25,8 @@ public:
 	void PopScene();
 
 	Scene* TopScene(); // Current scene
+
+	static const std::string& GetBasePath();
 
 private:
 	Screen mScreen;

@@ -1,5 +1,4 @@
 #pragma once
-#include "../Chess.h"
 #include "ChessPiece.h"
 
 class Pawn :

@@ -66,3 +66,12 @@ float Line2D::Length() const
 {
 	return mP1.Distance(mP0);
 }
+
+Line2D Line2D::Normal(const Line2D tangent) const
+{
+	Line2D normal();
+
+
+
+	return Line2D();
+}

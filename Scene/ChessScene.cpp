@@ -1,16 +1,29 @@
-#include "ArcadeScene.h"
-
+#include "ChessScene.h"
+#include "../Shapes/AARectangle.h"
+#include "../Shapes/Circle.h"
+#include "../Shapes/Triangle.h"
+#include "../Shapes/Line2D.h"
+#include "../Graphics/Screen.h"
 #include "../Input/GameController.h"
 #include <iostream>
+#include "../Games/Chess/ChessBoard.h"
+#include "../Games/Chess/King.h"
 
-void ArcadeScene::Init()
+ChessScene::ChessScene()
 {
+	// 
+}
+
+void ChessScene::Init()
+{
+
 	ButtonAction action;
 	action.key = GameController::ActionKey();
 	action.action = [this](uint32_t dt, InputState state)
 	{
 		if (GameController::IsPressed(state))
 		{
+			this->Select();
 		}
 	};
 	mGameController.AddInputActionForKey(action);
@@ -22,10 +35,10 @@ void ArcadeScene::Init()
 		if (GameController::IsPressed(state))
 		{
 			std::cout << "Left key pressed" << std::endl;
+			this->MoveLeft();
 		}
 	};
 	mGameController.AddInputActionForKey(left);
-
 	ButtonAction right;
 	right.key = GameController::RightKey();
 	right.action = [this](uint32_t dt, InputState state)
@@ -33,6 +46,7 @@ void ArcadeScene::Init()
 		if (GameController::IsPressed(state))
 		{
 			std::cout << "Right key pressed" << std::endl;
+			this->MoveRight();
 		}
 	};
 	mGameController.AddInputActionForKey(right);
@@ -43,6 +57,7 @@ void ArcadeScene::Init()
 		if (GameController::IsPressed(state))
 		{
 			std::cout << "Up key pressed" << std::endl;
+			this->MoveUp();
 		}
 	};
 	mGameController.AddInputActionForKey(up);
@@ -53,6 +68,7 @@ void ArcadeScene::Init()
 		if (GameController::IsPressed(state))
 		{
 			std::cout << "Down key pressed" << std::endl;
+			this->MoveDown();
 		}
 	};
 	mGameController.AddInputActionForKey(down);
@@ -71,57 +87,58 @@ void ArcadeScene::Init()
 	mGameController.SetMouseMovedAction([](const MousePosition& mousePos) {
 		// std::cout << "Mouse position x: " << mousePos.xPos << " y: " << mousePos.yPos << std::endl;
 		});
+
+	mChessBoard.Init();
+
+
 }
 
-void ArcadeScene::Update(uint32_t dt)
-{
+void ChessScene::Update(uint32_t dt)
+{	
+	mChessBoard.Update(dt);
 }
 
-void ArcadeScene::Draw(Screen& theScreen)
+void ChessScene::Draw(Screen& theScreen)
 {
+	mChessBoard.Draw(theScreen);
 }
 
-const std::string& ArcadeScene::GetSceneName() const
+const std::string& ChessScene::GetSceneName() const
 {
-	static std::string sceneName = "Arcade Scene";
+	static std::string sceneName = "Chess Game";
 	return sceneName;
 }
 
-
-std::unique_ptr<Scene> ArcadeScene::GetScene(eGame game)
+void ChessScene::MoveLeft()
 {
-	switch (game)
-	{
-	case TETRIS:
-	{
+	mChessBoard.MoveHighlightLocation(false, false);
+}
 
-	}
-	break;
+void ChessScene::MoveRight()
+{
+	mChessBoard.MoveHighlightLocation(false, true);
+}
 
-	case BREAK_OUT:
-	{
+void ChessScene::MoveUp()
+{
+	mChessBoard.MoveHighlightLocation(true, false);
+}
 
-	}
-	break;
+void ChessScene::MoveDown()
+{
+	mChessBoard.MoveHighlightLocation(true, true);
+}
 
-	case ASTEROIDS:
-	{
+void ChessScene::Select()
+{
+}
 
-	}
-	break;
+void ChessScene::DrawLine(Vec2D p1, Vec2D p2, Color outline,  Screen& screen)
+{
+	Line2D line(p1, p2);
+	screen.Draw(line, outline);
+}
 
-	case PACMAN:
-	{
-
-	}
-	break;
-
-	default:
-	{
-
-	}
-	break;
-	}
-
-	return nullptr;
+void ChessScene::DrawThreaded(Screen& screen)
+{
 }

@@ -5,9 +5,9 @@
 
 using namespace std;
 
-const int SCREEN_WIDTH = 900;
-const int SCREEN_HEIGHT = 900;
-const int MAGNIFICATION = 1;
+const int SCREEN_WIDTH = 224;
+const int SCREEN_HEIGHT = 288;
+const int MAGNIFICATION = 3;
 
 class DynamicIntArray
 {

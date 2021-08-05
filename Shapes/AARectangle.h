@@ -22,7 +22,7 @@ public:
 	virtual Vec2D GetCenterPoint() const override;
 
 	bool Intersects(const AARectangle& rect) const;
-	bool ContainsPont(const Vec2D& point) const;
+	bool ContainsPoint(const Vec2D& point) const;
 
 	static AARectangle Inset(const AARectangle& rect, Vec2D& insets);
 

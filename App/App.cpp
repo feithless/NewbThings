@@ -1,8 +1,11 @@
 #include "App.h"
 #include <SDL.h>
 #include <iostream>
+#include <stdlib.h>
 #include <cassert>
-#include "../Scene/ArcadeScene.h"
+#include "../Scene/ChessScene.h"
+#include "../Scene/GameScene.h"
+#include "../Games/Breakout/BreakOut.h"
 #include "../Input/InputController.h"
 
 
@@ -16,9 +19,18 @@ bool App::Init(uint32_t width, uint32_t height, uint32_t mag)
 {
 	mnoptrWindow = mScreen.Init(width, height, mag);
 
-	std::unique_ptr<ArcadeScene> arcadeScene = std::make_unique<ArcadeScene>();
+	std::unique_ptr<ChessScene> chessScene = std::make_unique<ChessScene>();
 
-	PushScene(std::move(arcadeScene));
+	PushScene(std::move(chessScene));
+
+	// Temporary
+	{
+		std::unique_ptr<BreakOut> breakoutGame = std::make_unique<BreakOut>();
+
+		std::unique_ptr<GameScene> breakoutScene = std::make_unique<GameScene>(std::move(breakoutGame));
+
+		PushScene(std::move(breakoutScene));
+	}
 
 	return mnoptrWindow != nullptr;
 }
@@ -46,7 +58,7 @@ void App::Run()
 		{
 			currentTick = SDL_GetTicks();
 			uint32_t frameTime = currentTick - lastTick;
-			std::cout << "Tick: " << int(frameTime) << std::endl;
+			// std::cout << "Tick: " << int(frameTime) << std::endl;
 
 			if (frameTime > 300)
 			{
@@ -75,7 +87,6 @@ void App::Run()
 
 					accumulator -= dt;
 				}
-
 				// Render
 				mScreen.PreDraw();
 				topScene->Draw(mScreen);
@@ -124,4 +135,11 @@ Scene* App::TopScene()
 	}
 
 	return mSceneStack.back().get();
+}
+
+const std::string& App::GetBasePath()
+{
+	static std::string basePath = "F:/UDemy/LearnC++ProgrammingByMakingGamesV2/Project1/Project1/";
+
+	return basePath;
 }
